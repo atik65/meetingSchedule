@@ -15,6 +15,7 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import DatePick from "@/components/DatePick";
 import TimeSlot from "@/components/TimeSlot";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [date, setDate] = useState(new Date());
@@ -22,10 +23,17 @@ export default function Home() {
     setDate(date);
   };
 
+  const router = useRouter();
+
+  const handleSchedule = () => {
+    alert("Meeting Scheduled");
+  };
+
   return (
-    <div className="parent ">
-      <div className="left">
+    <div className="parent2 ">
+      <div className="left ">
         <div
+          onClick={() => router.back()}
           className="rounded-full border-gray-500 border-2 w-10
         h-10 flex items-center justify-center cursor-pointer hover:bg-gray-200
         mb-3
@@ -44,24 +52,60 @@ export default function Home() {
         <p className="mb-2 text-gray-600">
           <AccessTimeIcon /> 30 min{" "}
         </p>
-        {/* <p className="mb-2 text-gray-600">
+        <p className="mb-2 text-gray-600">
           <CalendarMonthIcon /> 11:30am -12:00pm, Saturday July 29, 2023{" "}
         </p>
 
         <p className="mb-2 text-gray-600">
           <PublicIcon /> Asia/Dhaka
-        </p> */}
+        </p>
 
         <p className="text-gray-600">Hello</p>
       </div>
-      <div className="right ">
-        <div>
-          <h3 className="mb-4 font-sm text-xl">Select Date and Time</h3>
-          <DatePick date={date} handleDate={handleDate} />
+      <div className=" p-5 ">
+        <h1 className="text-lg font-semibold mb-4">Enter Details</h1>
+
+        <div className="mb-3">
+          <p className="font-semibold mb-2">Name *</p>
+          <input
+            type="text"
+            className="p-2 rounded border border-gray-200  w-full
+            focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent
+            "
+          />
         </div>
-        <div>
-          <TimeSlot date={date} />
+        <div className="mb-3">
+          <p className="font-semibold mb-2">Email *</p>
+          <input
+            type="email"
+            className="p-2 rounded border border-gray-200  w-full
+            focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent
+            "
+          />
         </div>
+
+        <p className="mb-3">Add Guest</p>
+        <div className="mb-3">
+          <p className="font-semibold mb-1">Location *</p>
+          <input type="checkbox" /> Google Meet
+        </div>
+
+        <div className="mb-3">
+          <p className="font-semibold mb-2">
+            Please Share anything that will help to prepare for our meeting
+          </p>
+          <textarea
+            type="email"
+            className="p-2 rounded border border-gray-200  w-full
+            focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent
+            "
+          />
+        </div>
+
+        <button onClick={handleSchedule} className="scheduleButton">
+          {" "}
+          Schedule Meeting{" "}
+        </button>
       </div>
     </div>
   );
